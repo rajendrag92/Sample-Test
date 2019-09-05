@@ -12,7 +12,7 @@ class PageDataRepository {
 
         let getPataUrl = `${this.apiBaseUrl}GetPageData/?index=${index}`;
 
-        return new Promise(function (resolve) {
+        return new Promise(resolve => {
             fetch(getPataUrl)
                 .then(response => response.json())
                 .then(data => {
@@ -36,16 +36,17 @@ class PageDataRepository {
 
             let pageDataValues = Array.from(pageRequests, (x, i) => this.getPageFromServer(x));
 
-
             Promise.all(pageDataValues).then(function (values) {
-                let pageData = [];
+                let pageData = [...Array(startIndex)];
 
                 values.forEach((data) => {
                     if (data != undefined)
                         pageData.push(...data);
                 });
 
-                resolve(pageData);
+                let dataSlice = pageData.slice(startIndex, endIndex + 1); 
+                
+                resolve(dataSlice);
             });
         });
 

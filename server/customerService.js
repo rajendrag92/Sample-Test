@@ -16,12 +16,12 @@ app.get('/GetPageData/', function (req, res) {
   let data = JSON.parse(fs.readFileSync("Server/Assets/data.json"));
   // Sort data
   data.sort();
-
+  
   let endIndex = (req.query.index + 1) * pageSize;
   let startIndex = (endIndex - pageSize);
 
   let pageData = data.slice(startIndex, endIndex);
-
+  //console.log(`Ppage index ${req.query.index} ppage length = ${pageData.length}`);
   res.send(pageData);
 });
 

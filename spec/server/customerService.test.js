@@ -6,15 +6,15 @@ describe('Customer API Unit test',function(){
     
     describe('Customer API status code 200',function(){
         
-        it('Status code 200',function(done){
-            request.get(server_url,function(error,response,body){
+        it('Status code 200', async function(done){
+            await request.get(server_url,function(error,response,body){
                 expect(response.statusCode).toBe(200);
                 done();
             });
         });
 
-        it('API GetPageData status code 200',function(done){
-            request.get(server_url +"GetPageData/?index=2",function(error,response,body){
+        it('API GetPageData status code 200',async function(done){
+            await request.get(server_url +"GetPageData/?index=2",function(error,response,body){
                 expect(response.statusCode).toBe(200);
                 done();
             });
